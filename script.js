@@ -15,4 +15,25 @@ function handleSubmit(e) {
     alert("Escolha uma moeda!");
     return;
   }
+  converter();
+}
+
+function converter() {
+  if (selectedCurrency.value === "eur") {
+    valueConverted = inputValue.value * 5.51;
+    result.innerHTML = valueFormatter("pt-br", "EUR");
+  } else if (selectedCurrency.value === "dol") {
+    valueConverted = inputValue.value * 5.18;
+    result.innerHTML = valueFormatter("en-us", "USD");
+  }
+  inputValue.value = "";
+  selectedCurrency.value = "";
+}
+
+function valueFormatter(Locale, currency) {
+  const value = valueConverted.toLocaleString(`${Locale}`, {
+    style: `currency`,
+    currency: `${currency}`,
+  });
+  return `<span>🤑</span> ${value} <span>🤑</span>`;
 }
